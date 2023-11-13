@@ -536,16 +536,16 @@ function get_mainsail_download_url() {
   local releases_by_tag tags tag unstable_url url
 
   ### latest stable download url
-  url="https://github.com/PrintWithSmile/mainsail/releases/latest/download/mainsail.zip"
+  url="https://github.com/mainsail-crew/mainsail/releases/latest/download/mainsail.zip"
 
   read_kiauh_ini "${FUNCNAME[0]}"
   if [[ ${mainsail_install_unstable} == "true" ]]; then
-    releases_by_tag="https://api.github.com/repos/PrintWithSmile/mainsail/tags"
+    releases_by_tag="https://api.github.com/repos/mainsail-crew/mainsail/tags"
     tags=$(curl -s "${releases_by_tag}" | grep "name" | cut -d'"' -f4)
     tag=$(echo "${tags}" | head -1)
 
     ### latest unstable download url including pre-releases (alpha, beta, rc)
-    unstable_url="https://github.com/PrintWithSmile/mainsail/releases/download/${tag}/mainsail.zip"
+    unstable_url="https://github.com/mainsail-crew/mainsail/releases/download/${tag}/mainsail.zip"
 
     if [[ ${unstable_url} == *"download//"* ]]; then
       warn_msg "Download URL broken! Falling back to URL of latest stable release!"
@@ -642,7 +642,7 @@ function patch_mainsail_update_manager() {
 [update_manager mainsail]
 type: web
 channel: stable
-repo: PrintWithSmile/mainsail
+repo: mainsail-crew/mainsail
 path: ~/mainsail
 MOONRAKER_CONF
 
